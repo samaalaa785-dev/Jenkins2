@@ -12,7 +12,7 @@ pipeline {
             steps {
                 git branch: 'main',
                     credentialsId: 'jenkins',
-                    url: "${https://github.com/samaalaa785-dev/Jenkins2.git}"
+                    url: "${REPO_URL}"
             }
         }
 
