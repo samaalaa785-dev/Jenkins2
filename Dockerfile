@@ -1,19 +1,13 @@
 
-FROM python:3.12-slim
-
-RUN apt-get update && apt-get install -y --no-install-recommends nodejs npm \
-    && rm -rf /var/lib/apt/lists/*
+FROM node:22-alpine
 
 WORKDIR /app
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
 COPY package.json .
-RUN npm install
+RUN npm install --omit=dev
 
-COPY . .
+COPY app.js .
 
-EXPOSE 3000 5000
+EXPOSE 3000
 
-CMD ["sh", "-c", "python hello.py & node app.js & wait"]
+CMD ["npm", "start"]
