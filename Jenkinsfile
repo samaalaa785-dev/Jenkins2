@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     environment {
-        APP_NAME = 'python-app'
+        APP_NAME = 'node-app'
         REPO_URL = 'https://github.com/samaalaa785-dev/Jenkins2.git'
     }
 
@@ -49,7 +49,7 @@ pipeline {
                 sh '''
                     docker run -d \
                         --name "${APP_NAME}-main-${BUILD_NUMBER}" \
-                        -p 5000:5000 \
+                        -p 3000:3000 \
                         "${APP_NAME}:${BUILD_NUMBER}"
 
                     docker ps
